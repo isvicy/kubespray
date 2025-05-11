@@ -13,7 +13,7 @@ registry_enabled: false
 # registry_disk_size: "10Gi"
 
 # Metrics Server deployment
-metrics_server_enabled: false
+metrics_server_enabled: true
 # metrics_server_container_port: 10250
 # metrics_server_kubelet_insecure_tls: true
 # metrics_server_metric_resolution: 15s
@@ -223,14 +223,14 @@ argocd_enabled: false
 # The plugin manager for kubectl
 
 # Kube VIP
-kube_vip_enabled: false
+kube_vip_enabled: true
 # kube_vip_arp_enabled: true
 # kube_vip_controlplane_enabled: true
-# kube_vip_address: 192.168.56.120
+kube_vip_address: {{ kube_control_plane_endpoint }}
 # loadbalancer_apiserver:
 #   address: "{{ kube_vip_address }}"
 #   port: 6443
-# kube_vip_interface: eth0
+kube_vip_interface: ens3
 # kube_vip_services_enabled: false
 # kube_vip_dns_mode: first
 # kube_vip_cp_detect: false

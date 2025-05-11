@@ -2,6 +2,11 @@
 ## Directory where the binaries will be installed
 bin_dir: /usr/local/bin
 
+control_plane_endpoint: 192.168.2.210
+load_balancer_ip_pool:
+  - 192.168.2.224/27
+kube_control_plane_endpoint: "{{ control_plane_endpoint | default('192.168.2.210') }}"
+
 ## The access_ip variable is used to define how other nodes should access
 ## the node.  This is used in flannel to allow other flannel nodes to see
 ## this node for example.  The access_ip is really useful AWS and Google
@@ -12,9 +17,9 @@ bin_dir: /usr/local/bin
 
 ## External LB example config
 ## apiserver_loadbalancer_domain_name: "elb.some.domain"
-# loadbalancer_apiserver:
-#   address: 1.2.3.4
-#   port: 1234
+loadbalancer_apiserver:
+  address: {{ kube_control_plane_endpoint }}
+  port: 6443
 
 ## Internal loadbalancers for apiservers
 # loadbalancer_apiserver_localhost: true
