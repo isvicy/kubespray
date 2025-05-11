@@ -23,7 +23,7 @@ kube_control_plane_endpoint: "{{ control_plane_endpoint | default('192.168.2.210
 ## External LB example config
 ## apiserver_loadbalancer_domain_name: "elb.some.domain"
 loadbalancer_apiserver:
-  address: {{ kube_control_plane_endpoint }}
+  address: "{{ kube_control_plane_endpoint }}"
   port: 6443
 
 ## Internal loadbalancers for apiservers

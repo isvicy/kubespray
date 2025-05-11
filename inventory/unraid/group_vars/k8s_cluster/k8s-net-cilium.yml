@@ -166,7 +166,7 @@ cilium_enable_hubble_ui: "{{ cilium_enable_hubble }}"
 ### Enable Hubble install
 cilium_hubble_install: true
 ### Enable auto generate certs if cilium_hubble_install: true
-# cilium_hubble_tls_generate: false
+cilium_hubble_tls_generate: true
 
 ### Tune cilium_hubble_event_buffer_capacity & cilium_hubble_event_queue_size values to avoid dropping events when hubble is under heavy load
 ### Capacity of Hubble events buffer. The provided value must be one less than an integer power of two and no larger than 65535
@@ -251,10 +251,7 @@ cilium_hubble_install: true
 # -- Configure Loadbalancer IP Pools
 cilium_loadbalancer_ip_pools:
   - name: "blue-pool"
-    cidrs:
-    {% for cidr in load_balancer_ip_pool | default(['192.168.2.224/27']) %}
-      - "{{ cidr }}"
-    {% endfor %}
+    cidrs: "{{ load_balancer_ip_pool | default(['192.168.2.224/27']) }}"
 
 # -- Configure BGP Instances (New bgpv2 API v1.16+)
 # cilium_bgp_cluster_configs:
